@@ -1,13 +1,15 @@
 import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from "../pages/register";
+import Login from "../pages/login";
+import SignIn from "../pages/signIn";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Register />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   );
