@@ -5,12 +5,27 @@ import Apple from "../../assets/apple.svg";
 import { Input } from "../common/input";
 import Google from "../../assets/google.svg";
 import LoginAs from "../common/loginAs";
-import React, {useContext} from 'react'
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../hook/userContext";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginInput } from "../services/inputSchema/inputValidation";
 
+type loginProps = {
+  email: string;
+  password: string;
+};
 const Login = () => {
-const [handleLogin]=useContext(UserContext)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<loginProps>({
+    resolver: zodResolver(loginInput),
+  });
+
+  const onFormSubmit = (data: loginProps) => {
+    console.log(data);
+  };
 
   const navigate = useNavigate();
 
@@ -172,7 +187,7 @@ const [handleLogin]=useContext(UserContext)
                 <Image src={Apple} alt="apple" />
               </Box>
             </Flex>
-            <form >
+            <form onSubmit={handleSubmit(onFormSubmit)}>
               <Text
                 fontFamily="Poppins"
                 fontStyle="normal"
@@ -181,7 +196,12 @@ const [handleLogin]=useContext(UserContext)
               >
                 Email address
               </Text>
-              <Input placeholder="Email address" type="email" isRequired />
+              <Input
+                placeholder="Email address"
+                type="email"
+                {...register("email")}
+              />
+              <Text color="red">{errors?.email?.message}</Text>
               <Text
                 fontFamily="Poppins"
                 fontStyle="normal"
@@ -191,7 +211,13 @@ const [handleLogin]=useContext(UserContext)
               >
                 Enter your Password
               </Text>
-              <Input placeholder="Password" type="password" isRequired />
+              <Input
+                placeholder="Password"
+                type="password"
+                {...register("password")}
+              />
+              <Text color="red">{errors?.password?.message}</Text>
+
               <Text
                 color="#4285F4"
                 fontFamily="Poppins"

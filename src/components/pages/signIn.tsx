@@ -6,15 +6,27 @@ import { Input } from "../common/input";
 import Google from "../../assets/google.svg";
 import LoginAs from "../common/loginAs";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../hook/userContext";
-import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignupSchema } from "../services/inputSchema/inputValidation";
+type signupProps = {
+  email: string;
+  password: string;
+  username: string;
+  confirmPwd: string;
+};
 const SignUp = () => {
-  // const [value]= useContext(UserContext);
+  const { register, handleSubmit, formState:{errors} } = useForm<signupProps>({
+    resolver: zodResolver(SignupSchema),
+  });
   const navigate = useNavigate();
-  
+
+  const onFormSubmit = (data: signupProps) => {
+    console.log(data);
+  };
+
   return (
     <>
-    {/* {value} */}
       <Box
         bg="#0089ED"
         h={{ base: "100%", md: "350px" }}
@@ -68,10 +80,6 @@ const SignUp = () => {
               ever since the 1500s,
             </Text>
           </Box>
-          {/* <Box>
-              <Image src={Saly} />
-            </Box>
-          </Flex> */}
 
           <Box
             bg="#ffffff"
@@ -110,7 +118,7 @@ const SignUp = () => {
                   fontWeight="400"
                   fontSize="13px"
                   cursor="pointer"
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate("/")}
                 >
                   Login
                 </Text>
@@ -169,7 +177,7 @@ const SignUp = () => {
                 <Image src={Apple} alt="apple" />
               </Box>
             </Flex>
-            <form >
+            <form onSubmit={handleSubmit(onFormSubmit)}>
               <Text
                 fontFamily="Poppins"
                 fontStyle="normal"
@@ -178,7 +186,12 @@ const SignUp = () => {
               >
                 Enter username
               </Text>
-              <Input placeholder="username" type="text" />
+              <Input
+                placeholder="username"
+                type="text"
+                {...register("username")}
+              />
+              <Text color={'red'}>{errors?.username?.message}</Text>
               <Text
                 fontFamily="Poppins"
                 fontStyle="normal"
@@ -188,7 +201,8 @@ const SignUp = () => {
               >
                 Email address
               </Text>
-              <Input placeholder="email" type="email" />
+              <Input placeholder="email" type="email" {...register("email")} />
+              <Text color={'red'}>{errors?.email?.message}</Text>
 
               <Text
                 fontFamily="Poppins"
@@ -199,7 +213,12 @@ const SignUp = () => {
               >
                 Enter your password
               </Text>
-              <Input placeholder="password" type="password" />
+              <Input
+                placeholder="password"
+                type="password"
+                {...register("password")}
+              />
+              <Text color={'red'}>{errors?.password?.message}</Text>
 
               <Text
                 fontFamily="Poppins"
@@ -210,7 +229,12 @@ const SignUp = () => {
               >
                 Confirm password
               </Text>
-              <Input placeholder="password" type="password" />
+              <Input
+                placeholder="password"
+                type="password"
+                {...register("confirmPwd")}
+              />
+              <Text color={'red'}>{errors?.confirmPwd?.message}</Text>
 
               <Button
                 w="100%"

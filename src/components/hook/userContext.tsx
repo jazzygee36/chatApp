@@ -4,6 +4,10 @@ import axios from "axios";
 interface contextProps {
   children: React.ReactNode;
 }
+type Inputs = {
+  email: string;
+  password: string;
+};
 
 export const UserContext = createContext("");
 
@@ -13,6 +17,8 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={[handleLogin]}>{children}</UserContext.Provider>
+    <UserContext.Provider value={[handleLogin]}>
+      {children}
+    </UserContext.Provider>
   );
 };
