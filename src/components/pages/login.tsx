@@ -5,10 +5,15 @@ import Apple from "../../assets/apple.svg";
 import { Input } from "../common/input";
 import Google from "../../assets/google.svg";
 import LoginAs from "../common/loginAs";
+import React, {useContext} from 'react'
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../hook/userContext";
+
 const Login = () => {
+const [handleLogin]=useContext(UserContext)
+
   const navigate = useNavigate();
-  const onClickHandler = () => navigate(`/signup`);
+
   return (
     <>
       <Box
@@ -106,7 +111,9 @@ const Login = () => {
                   fontWeight="400"
                   fontSize="13px"
                   cursor="pointer"
-                  onClick={onClickHandler}
+                  onClick={() => {
+                    navigate(`/signup`);
+                  }}
                 >
                   Sign up
                 </Text>
@@ -165,51 +172,57 @@ const Login = () => {
                 <Image src={Apple} alt="apple" />
               </Box>
             </Flex>
-            <Text
-              fontFamily="Poppins"
-              fontStyle="normal"
-              fontWeight="400"
-              fontSize="16px"
-            >
-              Enter your username or email address
-            </Text>
-            <Input placeholder="Username or email address" type="text" />
-            <Text
-              fontFamily="Poppins"
-              fontStyle="normal"
-              fontWeight="400"
-              fontSize="16px"
-              mt="36px"
-            >
-              Enter your Password
-            </Text>
-            <Input placeholder="Password" type="password" />
-            <Text
-              color="#4285F4"
-              fontFamily="Poppins"
-              fontStyle=" normal"
-              fontWeight="400"
-              fontSize="13px"
-              mt="12px"
-              textAlign="right"
-              cursor="pointer"
-            >
-              Forgot Password
-            </Text>
-            <Button
-              w="100%"
-              bg="#0089ED"
-              color="#ffffff"
-              h="50px"
-              outline="none"
-              border="none"
-              boxShadow="0px 4px 19px rgba(119, 147, 65, 0.3)"
-              borderRadius="10px"
-              mt="44px"
-              cursor="pointer"
-            >
-              Login
-            </Button>
+            <form >
+              <Text
+                fontFamily="Poppins"
+                fontStyle="normal"
+                fontWeight="400"
+                fontSize="16px"
+              >
+                Email address
+              </Text>
+              <Input placeholder="Email address" type="email" isRequired />
+              <Text
+                fontFamily="Poppins"
+                fontStyle="normal"
+                fontWeight="400"
+                fontSize="16px"
+                mt="36px"
+              >
+                Enter your Password
+              </Text>
+              <Input placeholder="Password" type="password" isRequired />
+              <Text
+                color="#4285F4"
+                fontFamily="Poppins"
+                fontStyle=" normal"
+                fontWeight="400"
+                fontSize="13px"
+                mt="12px"
+                textAlign="right"
+                cursor="pointer"
+              >
+                Forgot Password
+              </Text>
+              <Button
+                w="100%"
+                bg="#0089ED"
+                color="#ffffff"
+                h="50px"
+                outline="none"
+                border="none"
+                boxShadow="0px 4px 19px rgba(119, 147, 65, 0.3)"
+                borderRadius="10px"
+                mt="44px"
+                cursor="pointer"
+                _hover={{
+                  bg: "blue",
+                }}
+                type="submit"
+              >
+                Login
+              </Button>
+            </form>
           </Box>
         </Flex>
       </Box>

@@ -6,11 +6,15 @@ import { Input } from "../common/input";
 import Google from "../../assets/google.svg";
 import LoginAs from "../common/loginAs";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../hook/userContext";
+import { useContext } from "react";
 const SignUp = () => {
+  // const [value]= useContext(UserContext);
   const navigate = useNavigate();
-  const onClickHandler = () => navigate(`/`);
+  
   return (
     <>
+    {/* {value} */}
       <Box
         bg="#0089ED"
         h={{ base: "100%", md: "350px" }}
@@ -106,7 +110,7 @@ const SignUp = () => {
                   fontWeight="400"
                   fontSize="13px"
                   cursor="pointer"
-                  onClick={onClickHandler}
+                  onClick={() => navigate('/')}
                 >
                   Login
                 </Text>
@@ -165,40 +169,68 @@ const SignUp = () => {
                 <Image src={Apple} alt="apple" />
               </Box>
             </Flex>
-            <Text
-              fontFamily="Poppins"
-              fontStyle="normal"
-              fontWeight="400"
-              fontSize="16px"
-            >
-              Enter your username or email address
-            </Text>
-            <Input placeholder="Username or email address" type="text" />
-            <Text
-              fontFamily="Poppins"
-              fontStyle="normal"
-              fontWeight="400"
-              fontSize="16px"
-              mt="36px"
-            >
-              Enter your Password
-            </Text>
-            <Input placeholder="Password" type="password" />
+            <form >
+              <Text
+                fontFamily="Poppins"
+                fontStyle="normal"
+                fontWeight="400"
+                fontSize="16px"
+              >
+                Enter username
+              </Text>
+              <Input placeholder="username" type="text" />
+              <Text
+                fontFamily="Poppins"
+                fontStyle="normal"
+                fontWeight="400"
+                fontSize="16px"
+                mt="36px"
+              >
+                Email address
+              </Text>
+              <Input placeholder="email" type="email" />
 
-            <Button
-              w="100%"
-              bg="#0089ED"
-              color="#ffffff"
-              h="50px"
-              outline="none"
-              border="none"
-              boxShadow="0px 4px 19px rgba(119, 147, 65, 0.3)"
-              borderRadius="10px"
-              mt="44px"
-              cursor="pointer"
-            >
-              Sign up
-            </Button>
+              <Text
+                fontFamily="Poppins"
+                fontStyle="normal"
+                fontWeight="400"
+                fontSize="16px"
+                mt="36px"
+              >
+                Enter your password
+              </Text>
+              <Input placeholder="password" type="password" />
+
+              <Text
+                fontFamily="Poppins"
+                fontStyle="normal"
+                fontWeight="400"
+                fontSize="16px"
+                mt="36px"
+              >
+                Confirm password
+              </Text>
+              <Input placeholder="password" type="password" />
+
+              <Button
+                w="100%"
+                bg="#0089ED"
+                color="#ffffff"
+                h="50px"
+                outline="none"
+                border="none"
+                boxShadow="0px 4px 19px rgba(119, 147, 65, 0.3)"
+                borderRadius="10px"
+                mt="44px"
+                cursor="pointer"
+                _hover={{
+                  bg: "blue",
+                }}
+                type="submit"
+              >
+                Sign up
+              </Button>
+            </form>
           </Box>
         </Flex>
       </Box>
