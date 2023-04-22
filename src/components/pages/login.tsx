@@ -9,9 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginInput } from "../services/inputSchema/inputValidation";
+import { useDispatch } from "react-redux";
+import { login } from "../store/slices/users";
+import { any } from "zod";
 
 type loginProps = {
-  email: string;
+  username: string;
   password: string;
 };
 const Login = () => {
@@ -23,8 +26,16 @@ const Login = () => {
     resolver: zodResolver(loginInput),
   });
 
-  const onFormSubmit = (data: loginProps) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const onFormSubmit = () => {
+    dispatch(
+      login({
+        username: any,
+        password: any,
+        loggedIn: true,
+      })
+    );
   };
 
   const navigate = useNavigate();
@@ -194,14 +205,14 @@ const Login = () => {
                 fontWeight="400"
                 fontSize="16px"
               >
-                Email address
+                Enter Username
               </Text>
               <Input
-                placeholder="Email address"
-                type="email"
-                {...register("email")}
+                placeholder="username"
+                type="text"
+                {...register("username")}
               />
-              <Text color="red">{errors?.email?.message}</Text>
+              <Text color="red">{errors?.username?.message}</Text>
               <Text
                 fontFamily="Poppins"
                 fontStyle="normal"
