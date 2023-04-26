@@ -4,20 +4,20 @@ import axios from "axios";
 interface contextProps {
   children: React.ReactNode;
 }
-type Inputs = {
-  email: string;
-  password: string;
-};
 
-export const UserContext = createContext("");
+type defaultValue = {
+  handleRegistration: any;
+};
+export const UserContext = createContext({} as defaultValue);
 
 export const ContextProvider: React.FC<contextProps> = ({ children }) => {
-  const handleLogin = (e: any) => {
-    e.preventDefault();
+  const handleRegistration = () => {
+    axios.get("http://localhost:5000/api/register").then((res) => {
+      console.log(res.data);
+    });
   };
-
   return (
-    <UserContext.Provider value={[handleLogin]}>
+    <UserContext.Provider value={{ handleRegistration }}>
       {children}
     </UserContext.Provider>
   );

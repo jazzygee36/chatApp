@@ -9,9 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginInput } from "../services/inputSchema/inputValidation";
-import { useDispatch } from "react-redux";
-import { login } from "../store/slices/users";
-import { any } from "zod";
 
 type loginProps = {
   username: string;
@@ -26,16 +23,8 @@ const Login = () => {
     resolver: zodResolver(loginInput),
   });
 
-  const dispatch = useDispatch();
-
   const onFormSubmit = () => {
-    dispatch(
-      login({
-        username: any,
-        password: any,
-        loggedIn: true,
-      })
-    );
+    console.log();
   };
 
   const navigate = useNavigate();

@@ -10,14 +10,14 @@ export const loginInput = z.object({
 
 export const SignupSchema = z
   .object({
+    username: z.string().min(3, "username is required"),
     email: z.string().email("email is required"),
     password: z.string().min(6, "password must not be less than 6 characters"),
-    username: z.string().min(1, "username is required"),
-    confirmPwd: z
+    confirmPassword: z
       .string()
       .min(6, "confirm password must be same with password"),
   })
-  .refine((data) => data.password === data.confirmPwd, {
+  .refine((data) => data.password === data.confirmPassword, {
     message: "Password doesn't match",
-    path: ["confirmPwd"],
+    path: ["confirmPassword"],
   });

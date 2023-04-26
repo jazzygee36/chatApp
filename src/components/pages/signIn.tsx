@@ -1,5 +1,4 @@
 import { Box, Text, Flex, Image, Button } from "@chakra-ui/react";
-import Saly from "../../assets/Saly.svg";
 import Facebook from "../../assets/Facebook.svg";
 import Apple from "../../assets/apple.svg";
 import { Input } from "../common/input";
@@ -9,21 +8,28 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupSchema } from "../services/inputSchema/inputValidation";
+import { useContext } from "react";
+import { UserContext } from "../hooks/userContext";
+import axios from "axios";
+
 type signupProps = {
   email: string;
   password: string;
   username: string;
-  confirmPwd: string;
+  confirmPassword: string;
 };
 const SignUp = () => {
-  const { register, handleSubmit, formState:{errors} } = useForm<signupProps>({
+  // const { handleRegistration } = useContext(UserContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<signupProps>({
     resolver: zodResolver(SignupSchema),
   });
   const navigate = useNavigate();
 
-  const onFormSubmit = (data: signupProps) => {
-    console.log(data);
-  };
+  const handleRegistration = () => {};
 
   return (
     <>
@@ -177,7 +183,7 @@ const SignUp = () => {
                 <Image src={Apple} alt="apple" />
               </Box>
             </Flex>
-            <form onSubmit={handleSubmit(onFormSubmit)}>
+            <form onSubmit={handleSubmit(handleRegistration)}>
               <Text
                 fontFamily="Poppins"
                 fontStyle="normal"
@@ -191,7 +197,7 @@ const SignUp = () => {
                 type="text"
                 {...register("username")}
               />
-              <Text color={'red'}>{errors?.username?.message}</Text>
+              <Text color={"red"}>{errors?.username?.message}</Text>
               <Text
                 fontFamily="Poppins"
                 fontStyle="normal"
@@ -202,7 +208,7 @@ const SignUp = () => {
                 Email address
               </Text>
               <Input placeholder="email" type="email" {...register("email")} />
-              <Text color={'red'}>{errors?.email?.message}</Text>
+              <Text color={"red"}>{errors?.email?.message}</Text>
 
               <Text
                 fontFamily="Poppins"
@@ -218,7 +224,7 @@ const SignUp = () => {
                 type="password"
                 {...register("password")}
               />
-              <Text color={'red'}>{errors?.password?.message}</Text>
+              <Text color={"red"}>{errors?.password?.message}</Text>
 
               <Text
                 fontFamily="Poppins"
@@ -230,11 +236,11 @@ const SignUp = () => {
                 Confirm password
               </Text>
               <Input
-                placeholder="password"
+                placeholder="confirm password"
                 type="password"
-                {...register("confirmPwd")}
+                {...register("confirmPassword")}
               />
-              <Text color={'red'}>{errors?.confirmPwd?.message}</Text>
+              <Text color={"red"}>{errors?.confirmPassword?.message}</Text>
 
               <Button
                 w="100%"
