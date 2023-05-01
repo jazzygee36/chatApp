@@ -1,24 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
-import { logout, selectUser } from "../store/slices/users";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../hooks/userContext";
+import { useNavigate } from "react-router-dom";
 
 const ChatRoom = () => {
-  //   const dispatch = useDispatch();
-  //   const user = useSelector(selectUser);
-  //   const handleLogout = () => {
-  //     dispatch(logout());
-  //   };
-  const dispatch = useDispatch();
-  //   const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
-  const handleLogout = (e: any) => {
-    e.preventDefault();
-    dispatch(logout());
-  };
+  const { handleLogOut } = useContext(UserContext);
+  useEffect(() => {
+    const checkToken = localStorage.getItem("token");
+    if (!checkToken) {
+      navigate("/");
+    }
+  });
   return (
     <div>
       <h1>ChatRoom</h1>
-      <h1> welcome </h1>
-      <button onClick={(e) => handleLogout(e)}>Logout</button>
+
+      <button onClick={handleLogOut}>Logout</button>
     </div>
   );
 };

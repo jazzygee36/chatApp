@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const loginInput = z.object({
-  username: z.string().min(5, "username is required"),
+  email: z.string().email("email is required"),
   password: z
     .string()
     .min(6, "password must not be less than 6 characters")

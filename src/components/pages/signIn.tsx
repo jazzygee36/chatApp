@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupSchema } from "../services/inputSchema/inputValidation";
 import { useContext } from "react";
 import { UserContext } from "../hooks/userContext";
-import axios from "axios";
 
 type signupProps = {
   email: string;
@@ -19,7 +18,7 @@ type signupProps = {
   confirmPassword: string;
 };
 const SignUp = () => {
-  // const { handleRegistration } = useContext(UserContext);
+  const { handleRegistration } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -28,8 +27,6 @@ const SignUp = () => {
     resolver: zodResolver(SignupSchema),
   });
   const navigate = useNavigate();
-
-  const handleRegistration = () => {};
 
   return (
     <>
