@@ -14,7 +14,9 @@ type defaultValue = {
   isLoggedIn: any;
   isLoading: any;
   setIsLoading: any;
-  // token: any;
+  handleforgetPwd: any;
+
+  handleResetPwd: any;
 };
 export const UserContext = createContext({} as defaultValue);
 const token = window.localStorage.getItem("token");
@@ -77,8 +79,13 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
     } catch (err) {
       if (err && err instanceof AxiosError) {
         setError(err.response?.data.message);
-      } else if (err && err instanceof AxiosError) {
-        alert(err.message);
+        toast({
+          description: "email not found ",
+          duration: 2000,
+          isClosable: true,
+          status: "error",
+          position: "top-right",
+        });
       }
     }
   };
@@ -87,6 +94,37 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     navigate("/");
+  };
+
+  const handleforgetPwd = async (data: any) => {
+    const response = await axios.post(
+      "http://localhost:3000/api/reset/password",
+      data
+    );
+    console.log(response);
+    if (response) {
+      navigate("/email-link");
+    }
+  };
+
+  const handleResetPwd = async (id: any) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/user/:${id}`
+      );
+      if (response) {
+        toast({
+          description: "You've successfully reset your password, Login!",
+          duration: 2000,
+          isClosable: true,
+          status: "success",
+          position: "top-right",
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <UserContext.Provider
@@ -97,6 +135,8 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
         isLoggedIn,
         isLoading,
         setIsLoading,
+        handleforgetPwd,
+        handleResetPwd,
       }}
     >
       {children}

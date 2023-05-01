@@ -21,3 +21,19 @@ export const SignupSchema = z
     message: "Password doesn't match",
     path: ["confirmPassword"],
   });
+
+export const forgetPwdSchema = z.object({
+  email: z.string().email("email is required"),
+});
+
+export const SetnewPasswordSchema = z
+  .object({
+    password: z.string().min(6, "password must not be less than 6 characters"),
+    confirmPassword: z
+      .string()
+      .min(6, "confirm password must be same with password"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password doesn't match",
+    path: ["confirmPassword"],
+  });

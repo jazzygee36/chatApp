@@ -227,6 +227,7 @@ const Login = () => {
                     mt="12px"
                     textAlign="right"
                     cursor="pointer"
+                    onClick={() => navigate("forget-password")}
                   >
                     Forgot Password
                   </Text>
