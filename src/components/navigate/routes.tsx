@@ -7,6 +7,9 @@ import ChatRoom from "../pages/chatRoom";
 import ForgetPassword from "../pages/forgetPassword";
 import EmailLink from "../pages/emailSent";
 import SetNewPwd from "../pages/setNewPassword";
+import NavbarContainer from "../common/NavContainer/navbarContainer";
+import VideoCall from "../pages/video";
+import Contacts from "../pages/contacts";
 
 const Router = () => {
   const { isLoggedIn } = useContext(UserContext);
@@ -15,11 +18,15 @@ const Router = () => {
       <ContextProvider>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<SignIn />} />
-          <Route path="/chatroom" element={<ChatRoom />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/email-link" element={<EmailLink />} />
           <Route path="/setnew-password" element={<SetNewPwd />} />
+          <Route path="/signup" element={<SignIn />} />
+          <Route element={<NavbarContainer />}>
+            <Route path="/chatroom" element={<ChatRoom />} />
+            <Route path="/video" element={<VideoCall />} />
+            <Route path="/contacts" element={<Contacts />} />
+          </Route>
         </Routes>
       </ContextProvider>
     </BrowserRouter>
