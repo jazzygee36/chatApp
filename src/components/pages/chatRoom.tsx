@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../hooks/userContext";
 import { useNavigate } from "react-router-dom";
-import { Box, Text, Flex, Image, Center, Button } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Messages from "./replyDrawer";
 import Contacts from "./contacts";
 

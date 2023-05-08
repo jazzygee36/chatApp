@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Text, Flex, Image, Center, Button } from "@chakra-ui/react";
+import { Box, Flex, Center, Button } from "@chakra-ui/react";
 
 const Video = () => {
   return (

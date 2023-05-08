@@ -1,5 +1,4 @@
 import { Box, Text, Flex, Image, Button } from "@chakra-ui/react";
-import Saly from "../../assets/Saly.svg";
 import Facebook from "../../assets/Facebook.svg";
 import Apple from "../../assets/apple.svg";
 import { Input } from "../common/input";
@@ -10,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginInput } from "../services/inputSchema/inputValidation";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../hooks/userContext";
 import IsLoading from "../common/isLoading";
 

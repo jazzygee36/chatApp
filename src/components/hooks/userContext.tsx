@@ -2,11 +2,10 @@ import React, { createContext, useEffect, useReducer, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { Socket } from "socket.io-client";
+
 import {
   SocketReducer,
   defaultSocketContextState,
-  SocketContextProvider,
 } from "./socketContext/socketContext";
 
 interface contextProps {
@@ -34,7 +33,7 @@ const token = window.localStorage.getItem("token");
 export const ContextProvider: React.FC<contextProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [setError] = useState("");
   const [userMessage, setUserMessage] = useState(true);
   const [SocketState, SocketDispatch] = useReducer(
     SocketReducer,
@@ -71,9 +70,7 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
       }
     } catch (err) {
       if (err && err instanceof AxiosError) {
-        setError(err.response?.data.message);
       } else if (err && err instanceof AxiosError) {
-        setError(err.message);
       }
     }
   };
@@ -93,7 +90,6 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
       }
     } catch (err) {
       if (err && err instanceof AxiosError) {
-        setError(err.response?.data.message);
         toast({
           description: "email not found ",
           duration: 2000,

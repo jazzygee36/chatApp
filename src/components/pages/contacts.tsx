@@ -1,14 +1,5 @@
-import React, { useContext } from "react";
-import {
-  Box,
-  Text,
-  Flex,
-  Image,
-  useDisclosure,
-  Center,
-  Button,
-  Avatar,
-} from "@chakra-ui/react";
+import { useContext } from "react";
+import { Box, Text, Flex, useDisclosure, Avatar } from "@chakra-ui/react";
 import ReplyDrawer from "./replyDrawer";
 import { UserContext } from "../hooks/userContext";
 import { useNavigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Box, Text, Flex, Image } from "@chakra-ui/react";
+import { Text, Flex, Image } from "@chakra-ui/react";
 import Video from "../../../assets/VideoIcon.svg";
 import Message from "../../../assets/MessagesIcon.svg";
 import Contact from "../../../assets/ContactIcon.svg";

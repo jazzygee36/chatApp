@@ -17,7 +17,6 @@ import {
   Button,
   Image,
   Textarea,
-  Input,
 } from "@chakra-ui/react";
 
 import Attachment from "../../assets/attachmentIcon.svg";

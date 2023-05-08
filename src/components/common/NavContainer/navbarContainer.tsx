@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Box, Text, Button, Center, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
