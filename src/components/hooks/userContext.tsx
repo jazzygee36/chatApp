@@ -1,7 +1,13 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { Socket } from "socket.io-client";
+import {
+  SocketReducer,
+  defaultSocketContextState,
+  SocketContextProvider,
+} from "./socketContext/socketContext";
 
 interface contextProps {
   children: React.ReactNode;
@@ -15,8 +21,12 @@ type defaultValue = {
   isLoading: any;
   setIsLoading: any;
   handleforgetPwd: any;
-
+  userMessage: any;
   handleResetPwd: any;
+  handleUserMessage: any;
+  SocketState: any;
+  SocketDispatch: any;
+  handleAddContacts: any;
 };
 export const UserContext = createContext({} as defaultValue);
 const token = window.localStorage.getItem("token");
@@ -25,6 +35,11 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [userMessage, setUserMessage] = useState(true);
+  const [SocketState, SocketDispatch] = useReducer(
+    SocketReducer,
+    defaultSocketContextState
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -126,6 +141,16 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
       console.log(error);
     }
   };
+
+  const handleUserMessage = async (e: any) => {
+    try {
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleAddContacts = () => {
+    setUserMessage(true);
+  };
   return (
     <UserContext.Provider
       value={{
@@ -137,6 +162,11 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
         setIsLoading,
         handleforgetPwd,
         handleResetPwd,
+        userMessage,
+        handleUserMessage,
+        SocketState,
+        SocketDispatch,
+        handleAddContacts,
       }}
     >
       {children}

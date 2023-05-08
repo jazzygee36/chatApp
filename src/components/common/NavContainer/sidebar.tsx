@@ -13,7 +13,14 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   return (
-    <Box w="240px" p="15px" bg="#F2F2F2" h="100vh" mr="5">
+    <Flex
+      // flexDirection={"column"}
+      w={{ md: "240px", base: "70px" }}
+      p="15px"
+      h="100vh"
+      mr="2"
+      display={{ md: "block", base: "none" }}
+    >
       <Text
         mb="130px"
         cursor={"pointer"}
@@ -37,8 +44,10 @@ const Sidebar = () => {
         }}
         onClick={() => navigate("/chatroom")}
       >
-        <Image src={Message} alt="message" w="25px" mr="15px" ml="10px" />
-        <Text color="#fff">Messages</Text>
+        <Image src={Message} alt="message" w="25px" mr="5px" ml="10px" />
+        <Text color="#fff" display={{ md: "block", base: "none" }}>
+          Messages
+        </Text>
       </Flex>
 
       <Flex
@@ -52,9 +61,10 @@ const Sidebar = () => {
           color: "#ffffff",
         }}
         onClick={() => navigate("/video")}
+        display={{ md: "block", base: "none" }}
       >
         <Image src={Video} alt="vd" w="25px" mr="15px" ml="10px" />
-        <Text>Video Call</Text>
+        <Text display={{ md: "block", base: "none" }}>Video Call</Text>
       </Flex>
       <Flex
         alignItems={"center"}
@@ -68,7 +78,7 @@ const Sidebar = () => {
         }}
       >
         <Image src={Contact} alt="contact" w="25px" mr="15px" ml="10px" />
-        <Text>Contacts</Text>
+        <Text display={{ md: "block", base: "none" }}>Contacts</Text>
       </Flex>
       <Flex
         alignItems={"center"}
@@ -82,9 +92,9 @@ const Sidebar = () => {
         }}
       >
         <Image src={Notes} alt="notes" w="25px" mr="15px" ml="10px" />
-        <Text>Notes</Text>
+        <Text display={{ md: "block", base: "none" }}>Notes</Text>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 

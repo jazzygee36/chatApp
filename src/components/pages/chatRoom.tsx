@@ -1,9 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../hooks/userContext";
 import { useNavigate } from "react-router-dom";
 import { Box, Text, Flex, Image, Center, Button } from "@chakra-ui/react";
+import Messages from "./replyDrawer";
+import Contacts from "./contacts";
 
 const ChatRoom = () => {
+  const { userMessage, SocketState, SocketDispatch } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const { handleLogOut } = useContext(UserContext);
@@ -14,18 +18,28 @@ const ChatRoom = () => {
   //   }
   // });
   return (
-    <Center h="100%">
-      <Flex flexDirection="column">
-        <Text mb="16px" fontWeight="600" fontSize="18px">
-          You do not have any message yet.
-        </Text>
-
-        <Button colorScheme="blue" onClick={() => navigate("/contacts")}>
-          {" "}
-          Add Contact
-        </Button>
+    <Box mr={{ md: "8px", base: "none" }} w="100%">
+      <Flex>
+        <Box
+          w={{ md: "400px", base: "100%" }}
+          p="15px"
+          bg="#F2F2F2"
+          h="100vh"
+          mr={{ md: "4", base: "none" }}
+        >
+          <Contacts />
+        </Box>{" "}
+        <Messages
+          isOpen={false}
+          onClose={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+          onOpen={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
       </Flex>
-    </Center>
+    </Box>
   );
 };
 

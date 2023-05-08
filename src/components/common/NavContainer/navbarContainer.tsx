@@ -14,7 +14,7 @@ const NavbarContainer = () => {
     }
   });
   return (
-    <Flex h="100vh" bg="#ffffff">
+    <Flex flexDirection={{ base: "row" }} h="100vh" bg="#ffffff">
       <Box>
         <Dashboard />
       </Box>

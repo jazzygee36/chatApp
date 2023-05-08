@@ -25,7 +25,6 @@ const Router = () => {
           <Route element={<NavbarContainer />}>
             <Route path="/chatroom" element={<ChatRoom />} />
             <Route path="/video" element={<VideoCall />} />
-            <Route path="/contacts" element={<Contacts />} />
           </Route>
         </Routes>
       </ContextProvider>
