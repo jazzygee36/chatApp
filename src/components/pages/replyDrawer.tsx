@@ -85,8 +85,6 @@ const ReplyDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
               py="10px"
             >
               <Flex>
-                {/* <Image src={Attachment} mr="20px" />
-                <Image src={Emoji} /> */}
                 <Textarea variant="unstyled" placeholder="Type a message..." />
 
                 <Flex flexDirection={"column"} alignItems={"center"}>
