@@ -36,7 +36,6 @@ const ReplyDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>History</DrawerHeader>
-
           <DrawerBody>
             <Flex mb="37px">
               <Wrap mr="3">
