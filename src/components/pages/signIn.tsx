@@ -43,9 +43,10 @@ const SignUp = () => {
           fontWeight="bold"
           pl={{ base: "20px", md: "block" }}
           mb={{ base: "30px" }}
+          fontSize={"25px"}
         >
           {" "}
-          ChatApp
+          Cohnet
         </Text>
         <Flex justifyContent="space-around">
           {/* <Flex alignItems="center" display={{ base: "none", md: "block" }}> */}
@@ -57,7 +58,7 @@ const SignUp = () => {
               fontWeight="600"
               fontSize="34px"
             >
-              Sign up to Connect
+              Sign up to Cohnet
             </Text>
             <Text
               color="#ffffff"
@@ -103,7 +104,7 @@ const SignUp = () => {
                 fontWeight="400"
                 fontSize="21px"
               >
-                Welcome to ChatAPP
+                Welcome to Cohnet
               </Box>
               <Box>
                 <Text
@@ -131,13 +132,13 @@ const SignUp = () => {
               fontFamily="Poppins"
               fontStyle="normal"
               fontWeight="500"
-              fontSize="55px"
+              fontSize={{ md: "55px", base: "20px" }}
             >
               Sign up
             </Text>
             <Flex align="center" mt="43px" mb="52px">
               <Box
-                w="200px"
+                p="15px"
                 h="45px"
                 background=" #E9F1FF"
                 borderRadius="9px"
@@ -151,7 +152,7 @@ const SignUp = () => {
               >
                 <Flex alignItems="center">
                   <Image src={Google} alt="google" mr="8px" />
-                  <Text> Sign in with Google</Text>
+                  <Text fontSize={{ base: "12px" }}> Sign in with Google</Text>
                 </Flex>
               </Box>
               <Box
