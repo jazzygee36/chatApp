@@ -75,7 +75,6 @@ const ReplyDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
               </Wrap>
             </Flex>
           </DrawerBody>
-
           <DrawerFooter>
             <Box
               w="100%"
