@@ -18,7 +18,6 @@ const NavbarContainer = () => {
       <Box>
         <Dashboard />
       </Box>
-
       <Box flex="2" overflow="auto" w="100%" h="100%">
         <Outlet />
       </Box>

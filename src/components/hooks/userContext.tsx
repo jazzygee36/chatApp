@@ -2,11 +2,7 @@ import React, { createContext, useEffect, useReducer, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-
-import {
-  SocketReducer,
-  defaultSocketContextState,
-} from "./socketContext/socketContext";
+import socket from "./socketContext/socketContext";
 
 interface contextProps {
   children: React.ReactNode;
@@ -27,6 +23,7 @@ type defaultValue = {
   SocketDispatch: any;
   handleAddContacts: any;
 };
+interface socket {}
 export const UserContext = createContext({} as defaultValue);
 const token = window.localStorage.getItem("token");
 
@@ -35,10 +32,7 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [setError] = useState("");
   const [userMessage, setUserMessage] = useState(true);
-  const [SocketState, SocketDispatch] = useReducer(
-    SocketReducer,
-    defaultSocketContextState
-  );
+  // const [contacts, setContacts] = useLocalStorage('contacts', [])
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,6 +51,8 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
         "http://localhost:3000/api/register",
         data
       );
+      window.localStorage.setItem("username", result.data.username);
+
       if (result) {
         setIsLoading(false);
         toast({
@@ -86,6 +82,7 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
 
       if (result) {
         window.localStorage.setItem("token", result.data.token);
+        window.localStorage.setItem("username", result.data.username);
         navigate("/chatroom");
       }
     } catch (err) {
@@ -160,8 +157,7 @@ export const ContextProvider: React.FC<contextProps> = ({ children }) => {
         handleResetPwd,
         userMessage,
         handleUserMessage,
-        SocketState,
-        SocketDispatch,
+
         handleAddContacts,
       }}
     >

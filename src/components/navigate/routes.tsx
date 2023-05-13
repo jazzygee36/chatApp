@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/login";
 import SignIn from "../pages/signIn";
 import { ContextProvider, UserContext } from "../hooks/userContext";
-import ChatRoom from "../pages/chatRoom";
+import ChatRoom from "../pages/ChatRoom";
 import ForgetPassword from "../pages/forgetPassword";
 import EmailLink from "../pages/emailSent";
 import SetNewPwd from "../pages/setNewPassword";
 import NavbarContainer from "../common/NavContainer/navbarContainer";
-import VideoCall from "../pages/video";
-import Contacts from "../pages/contacts";
+
+import Contact from "../pages/Contact";
 
 const Router = () => {
   const { isLoggedIn } = useContext(UserContext);
@@ -24,7 +24,7 @@ const Router = () => {
           <Route path="/signup" element={<SignIn />} />
           <Route element={<NavbarContainer />}>
             <Route path="/chatroom" element={<ChatRoom />} />
-            <Route path="/video" element={<VideoCall />} />
+            <Route path="/contacts" element={<Contact />} />
           </Route>
         </Routes>
       </ContextProvider>

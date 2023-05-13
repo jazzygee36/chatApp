@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Text, Flex, Image } from "@chakra-ui/react";
-import Video from "../../../assets/VideoIcon.svg";
 import Message from "../../../assets/MessagesIcon.svg";
 import Contact from "../../../assets/ContactIcon.svg";
 import Notes from "../../../assets/NoteIcon.svg";
@@ -8,7 +7,6 @@ import { UserContext } from "../../hooks/userContext";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const [messages, setMessages] = useState(false);
   const { handleLogOut } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -49,6 +47,21 @@ const Sidebar = () => {
           Messages
         </Text>
       </Flex>
+      {/* <Flex
+        alignItems={"center"}
+        mb="20px"
+        h="55px"
+        borderRadius={"8px"}
+        cursor={"pointer"}
+        _hover={{
+          bg: "#2186EB",
+          color: "#ffffff",
+        }}
+        onClick={() => navigate("/video")}
+      >
+        <Image src={Video} alt="contact" w="25px" mr="15px" ml="10px" />
+        <Text display={{ md: "block", base: "none" }}>Video call</Text>
+      </Flex> */}
 
       <Flex
         alignItems={"center"}
@@ -60,22 +73,7 @@ const Sidebar = () => {
           bg: "#2186EB",
           color: "#ffffff",
         }}
-        onClick={() => navigate("/video")}
-        display={{ md: "block", base: "none" }}
-      >
-        <Image src={Video} alt="vd" w="25px" mr="15px" ml="10px" />
-        <Text display={{ md: "block", base: "none" }}>Video Call</Text>
-      </Flex>
-      <Flex
-        alignItems={"center"}
-        mb="20px"
-        h="55px"
-        borderRadius={"8px"}
-        cursor={"pointer"}
-        _hover={{
-          bg: "#2186EB",
-          color: "#ffffff",
-        }}
+        onClick={() => navigate("/contacts")}
       >
         <Image src={Contact} alt="contact" w="25px" mr="15px" ml="10px" />
         <Text display={{ md: "block", base: "none" }}>Contacts</Text>
